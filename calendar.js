@@ -544,3 +544,5 @@ var calendar = {
         return this.solar2lunar(cY,cM,cD);
     }
 };
+
+module.exports = calendar;
