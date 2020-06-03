@@ -10,7 +10,7 @@
 * @公历转农历：calendar.solar2lunar(1987,11,01); //[you can ignore params of prefix 0]
 * @农历转公历：calendar.lunar2solar(1987,09,10); //[you can ignore params of prefix 0]
 */
-var calendar = {
+export var calendar = {
 
     /**
       * 农历1900-2100的润大小信息表
@@ -20,7 +20,7 @@ var calendar = {
     lunarInfo:[0x04bd8,0x04ae0,0x0a570,0x054d5,0x0d260,0x0d950,0x16554,0x056a0,0x09ad0,0x055d2,//1900-1909
             0x04ae0,0x0a5b6,0x0a4d0,0x0d250,0x1d255,0x0b540,0x0d6a0,0x0ada2,0x095b0,0x14977,//1910-1919
             0x04970,0x0a4b0,0x0b4b5,0x06a50,0x06d40,0x1ab54,0x02b60,0x09570,0x052f2,0x04970,//1920-1929
-            0x06566,0x0d4a0,0x0ea50,0x06e95,0x05ad0,0x02b60,0x186e3,0x092e0,0x1c8d7,0x0c950,//1930-1939
+            0x06566,0x0d4a0,0x0ea50,0x16a95,0x05ad0,0x02b60,0x186e3,0x092e0,0x1c8d7,0x0c950,//1930-1939
             0x0d4a0,0x1d8a6,0x0b550,0x056a0,0x1a5b4,0x025d0,0x092d0,0x0d2b2,0x0a950,0x0b557,//1940-1949
             0x06ca0,0x0b550,0x15355,0x04da0,0x0a5b0,0x14573,0x052b0,0x0a9a8,0x0e950,0x06aa0,//1950-1959
             0x0aea6,0x0ab50,0x04b60,0x0aae4,0x0a570,0x05260,0x0f263,0x0d950,0x05b57,0x056a0,//1960-1969
@@ -34,7 +34,7 @@ var calendar = {
             0x0b5a0,0x056d0,0x055b2,0x049b0,0x0a577,0x0a4b0,0x0aa50,0x1b255,0x06d20,0x0ada0,//2040-2049
             /**Add By JJonline@JJonline.Cn**/
             0x14b63,0x09370,0x049f8,0x04970,0x064b0,0x168a6,0x0ea50, 0x06b20,0x1a6c4,0x0aae0,//2050-2059
-            0x0a2e0,0x0d2e3,0x0c960,0x0d557,0x0d4a0,0x0da50,0x05d55,0x056a0,0x0a6d0,0x055d4,//2060-2069
+            0x092e0,0x0d2e3,0x0c960,0x0d557,0x0d4a0,0x0da50,0x05d55,0x056a0,0x0a6d0,0x055d4,//2060-2069
             0x052d0,0x0a9b8,0x0a950,0x0b4a0,0x0b6a6,0x0ad50,0x055a0,0x0aba4,0x0a5b0,0x052b0,//2070-2079
             0x0b273,0x06930,0x07337,0x06aa0,0x0ad50,0x14b55,0x04b60,0x0a570,0x054e4,0x0d160,//2080-2089
             0x0e968,0x0d520,0x0daa0,0x16aa6,0x056d0,0x04ae0,0x0a9d4,0x0a2d0,0x0d150,0x0f252,//2090-2099
@@ -69,6 +69,70 @@ var calendar = {
       * @return Cn string
       */
     Animals:["\u9f20","\u725b","\u864e","\u5154","\u9f99","\u86c7","\u9a6c","\u7f8a","\u7334","\u9e21","\u72d7","\u732a"],
+    
+    /**
+     * 阳历节日
+     */
+    festival: {
+      '1-1':   {title: '元旦节'},
+      '2-14':  {title: '情人节'},
+      '5-1':   {title: '劳动节'},
+      '5-4':   {title: '青年节'},
+      '6-1':   {title: '儿童节'},
+      '9-10':  {title: '教师节'},
+      '10-1':  {title: '国庆节'},
+      '12-25': {title: '圣诞节'},
+
+      '3-8':   {title: '妇女节'},
+      '3-12':  {title: '植树节'},
+      '4-1':   {title: '愚人节'},
+      '5-12':  {title: '护士节'},
+      '7-1':   {title: '建党节'},
+      '8-1':   {title: '建军节'},
+      '12-24': {title: '平安夜'},
+    },
+
+    /**
+     * 农历节日
+     */
+    lfestival: {
+      '12-30': {title: '除夕'},
+      '1-1':   {title: '春节'},
+      '1-15':  {title: '元宵节'},
+      '5-5':   {title: '端午节'},
+      '8-15':  {title: '中秋节'},
+      '9-9':   {title: '重阳节'},
+    },
+
+    /**
+     * 返回默认定义的阳历节日
+     */
+    getFestival(){
+      return this.festival
+    },
+
+    /**
+     * 返回默认定义的内容里节日
+     */
+    getLunarFestival(){
+      return this.lfestival
+    },
+
+    /**
+     * 
+     * @param {Object} 按照festival的格式输入数据，设置阳历节日
+     */
+    setFestival(param={}){
+      this.festival = param
+    },
+
+    /**
+     * 
+     * @param {Object} 按照lfestival的格式输入数据，设置农历节日
+     */
+    setLunarFestival(param={}){
+      this.lfestival = param
+    },
 
     /**
       * 24节气速查表
@@ -380,6 +444,9 @@ var calendar = {
       * @eg:console.log(calendar.solar2lunar(1987,11,01));
       */
     solar2lunar:function (y,m,d) { //参数区间1900.1.31~2100.12.31
+        y = parseInt(y)
+        m = parseInt(m)
+        d = parseInt(d)
         //年份限定、上限
         if(y<1900 || y>2100) {
             return -1;// undefined转换为数字变为NaN
@@ -489,7 +556,40 @@ var calendar = {
         //该日期所属的星座
         var astro       = this.toAstro(m,d);
 
-        return {'lYear':year,'lMonth':month,'lDay':day,'Animal':this.getAnimal(year),'IMonthCn':(isLeap?"\u95f0":'')+this.toChinaMonth(month),'IDayCn':this.toChinaDay(day),'cYear':y,'cMonth':m,'cDay':d,'gzYear':gzY,'gzMonth':gzM,'gzDay':gzD,'isToday':isToday,'isLeap':isLeap,'nWeek':nWeek,'ncWeek':"\u661f\u671f"+cWeek,'isTerm':isTerm,'Term':Term,'astro':astro};
+        var solarDate = y+'-'+m+'-'+d
+        var lunarDate = year+'-'+month+'-'+day
+
+        var festival = this.festival
+        var lfestival = this.lfestival
+
+        var festivalDate = m+'-'+d
+        var lunarFestivalDate = month+'-'+day
+
+        return {
+          date: solarDate,
+          lunarDate: lunarDate,
+          festival: festival[festivalDate] ? festival[festivalDate].title : null,
+          lunarFestival: lfestival[lunarFestivalDate] ? lfestival[lunarFestivalDate].title : null,
+          'lYear':year,
+          'lMonth':month,
+          'lDay':day,
+          'Animal':this.getAnimal(year),
+          'IMonthCn':(isLeap?"\u95f0":'')+this.toChinaMonth(month),
+          'IDayCn':this.toChinaDay(day),
+          'cYear':y,
+          'cMonth':m,
+          'cDay':d,
+          'gzYear':gzY,
+          'gzMonth':gzM,
+          'gzDay':gzD,
+          'isToday':isToday,
+          'isLeap':isLeap,
+          'nWeek':nWeek,
+          'ncWeek':"\u661f\u671f"+cWeek,
+          'isTerm':isTerm,
+          'Term':Term,
+          'astro':astro
+        };
     },
 
     /**
@@ -502,6 +602,9 @@ var calendar = {
       * @eg:console.log(calendar.lunar2solar(1987,9,10));
       */
     lunar2solar:function(y,m,d,isLeapMonth) {   //参数区间1900.1.31~2100.12.1
+        y = parseInt(y)
+        m = parseInt(m)
+        d = parseInt(d)
         var isLeapMonth = !!isLeapMonth;
         var leapOffset  = 0;
         var leapMonth   = this.leapMonth(y);
