@@ -1,19 +1,13 @@
 {
   "name": "calendar",
   "version": "1.0.0",
-  "description": "中国农历（阴阳历）和西元阳历即公历互转JavaScript库",
-  "main": "calendar.js",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pithyone/calendar.js.git"
-  },
-  "author": "",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/pithyone/calendar.js/issues"
-  },
-  "homepage": "https://github.com/pithyone/calendar.js#readme"
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
 }
