@@ -46,4 +46,8 @@ export interface Calendar {
     lYear: number;
     nWeek: number;
     ncWeek: string;
+    date: string;
+    lunarDate: string;
+    festival: string | null;
+    lunarFestival: string | null;
 }
