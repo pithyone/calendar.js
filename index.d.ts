@@ -24,7 +24,7 @@ export function getAnimal(y: number): string;
 
 export function solar2lunar(y: number, m: number, d: number): calendar | -1;
 
-export function lunar2solar(y: number, m: number, d: number, isLeapMonth?: boolean): calendar;
+export function lunar2solar(y: number, m: number, d: number, isLeapMonth?: boolean): calendar | -1;
 
 export interface calendar {
     Animal: string;
