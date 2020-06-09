@@ -22,11 +22,11 @@ export function toChinaDay(d: number): string;
 
 export function getAnimal(y: number): string;
 
-export function solar2lunar(y: number, m: number, d: number): calendar | -1;
+export function solar2lunar(y: number, m: number, d: number): Calendar | -1;
 
-export function lunar2solar(y: number, m: number, d: number, isLeapMonth?: boolean): calendar | -1;
+export function lunar2solar(y: number, m: number, d: number, isLeapMonth?: boolean): Calendar | -1;
 
-export interface calendar {
+export interface Calendar {
     Animal: string;
     IDayCn: string;
     IMonthCn: string;
