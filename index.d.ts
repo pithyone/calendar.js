@@ -22,7 +22,7 @@ export function toChinaDay(d: number): string;
 
 export function getAnimal(y: number): string;
 
-export function solar2lunar(): -1 | Calendar;
+export function solar2lunar(): Calendar;
 export function solar2lunar(y: number, m: number, d: number): -1 | Calendar;
 
 export function lunar2solar(): -1 | Calendar;
